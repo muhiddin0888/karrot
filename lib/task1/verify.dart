@@ -5,7 +5,6 @@ import 'package:lottie/lottie.dart';
 import 'package:phone_otp_ui/utils/constants.dart';
 import 'package:phone_otp_ui/task1/phone.dart';
 import 'package:pinput/pinput.dart';
-
 import '../utils/color.dart';
 
 class MyVerify extends StatefulWidget {
