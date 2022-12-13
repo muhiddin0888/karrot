@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../utils/color.dart';
+import '../../../utils/icon.dart';
 
 class IntorPage2 extends StatelessWidget {
   const IntorPage2({super.key});
@@ -14,12 +16,12 @@ class IntorPage2 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text("Boadring Page 2"),
+          Lottie.asset(AppIcon.boarding2),
           const SizedBox(
             height: 16,
           ),
           const Text(
-            "Create daily routine",
+            "Find your own car",
             style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.w800,
@@ -28,13 +30,16 @@ class IntorPage2 extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-          const Text(
-            "In Uptodo  you can create your\n personalized routine to stay productive",
-            style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w400,
-                color: AppColors.black),
-            textAlign: TextAlign.center,
+          const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              "Now it is easy to find car, you ca also post to sell your car gan give a rent",
+              style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.black),
+              textAlign: TextAlign.center,
+            ),
           ),
         ],
       )),

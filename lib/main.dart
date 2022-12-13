@@ -2,8 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:phone_otp_ui/utils/constants.dart';
 import 'package:phone_otp_ui/router.dart';
-import 'package:phone_otp_ui/task1/phone.dart';
-import 'package:phone_otp_ui/task1/verify.dart';
+import 'package:phone_otp_ui/login/phone.dart';
+import 'package:phone_otp_ui/login/verify.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

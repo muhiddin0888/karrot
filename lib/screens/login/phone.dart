@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:phone_otp_ui/utils/constants.dart';
-
+import '../../utils/constants.dart';
+import '../../utils/icon.dart';
 import '../utils/color.dart';
 
 class MyPhone extends StatefulWidget {
@@ -19,7 +19,6 @@ class _MyPhoneState extends State<MyPhone> {
 
   @override
   void initState() {
-    // TODO: implement initState
     countryCode.text = "+998";
     super.initState();
   }
@@ -35,7 +34,7 @@ class _MyPhoneState extends State<MyPhone> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Lottie.asset(
-                "assets/otp.json",
+                AppIcon.otp,
                 width: 150,
                 height: 150,
               ),
@@ -113,7 +112,8 @@ class _MyPhoneState extends State<MyPhone> {
                         verificationFailed: (FirebaseAuthException e) {},
                         codeSent: (String? verificationId, int? resendToken) {
                           MyPhone.verify = verificationId!;
-                          Navigator.pushNamed(context, verify);
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, verify, (Route<dynamic> route) => false);
                         },
                         codeAutoRetrievalTimeout: (String verificationId) {},
                       );

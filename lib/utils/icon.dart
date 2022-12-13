@@ -5,8 +5,10 @@ class AppIcon {
   static const otp = "assets/lottie/otp.json";
   static const splash = "assets/images/icon.jpg";
 
-  static const boardingImage1 = "assets/images/img.png";
-  static const String tickIcon = "assets/images/tick_icon.png";
+  //lottie
+  static const boarding1 = "assets/lottie/on_boarding_delivery.json";
+  static const boarding2 = "assets/lottie/car.json";
+  static const boarding3 = "assets/lottie/chat.json";
 
   static const List<String> userImg = [
     "assets/images/users/user_1.png",

@@ -6,8 +6,8 @@ import 'package:phone_otp_ui/task2/map.dart';
 import 'package:phone_otp_ui/task4/login.dart';
 import 'package:phone_otp_ui/utils/constants.dart';
 import 'package:phone_otp_ui/home.dart';
-import 'package:phone_otp_ui/task1/phone.dart';
-import 'package:phone_otp_ui/task1/verify.dart';
+import 'package:phone_otp_ui/login/phone.dart';
+import 'package:phone_otp_ui/login/verify.dart';
 
 class MyRouter {
   static Route generateRoute(RouteSettings settings) {
@@ -22,12 +22,12 @@ class MyRouter {
         return navigateTo(const MyPhone());
       case verify:
         return navigateTo(const MyVerify());
-      case home:
-        return navigateTo(HomePage());
-      case map:
-        return navigateTo(const MapPage());
-      case chat:
-        return navigateTo(const LogIn());
+      // case home:
+      //   return navigateTo(HomePage());
+      // case map:
+      //   return navigateTo(const MapPage());
+      // case chat:
+      //   return navigateTo(const LogIn());
       default:
         return navigateTo(
           Scaffold(

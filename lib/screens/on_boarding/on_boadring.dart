@@ -27,6 +27,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       backgroundColor: AppColors.white,
       body: Stack(
         children: [
+          //Main Page Viewer
           PageView(
             controller: _controller,
             onPageChanged: (index) {
@@ -35,6 +36,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               });
             },
             children: const [
+              // 3  main inrtoduction pages
               IntorPage1(),
               IntorPage2(),
               IntorPage3(),
@@ -46,98 +48,98 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             child: SmoothPageIndicator(
               controller: _controller,
               count: 3,
-              effect: WormEffect(
+              effect: const WormEffect(
                   activeDotColor: AppColors.defaultKarrot,
-                  dotColor: AppColors.grey),
+                  dotColor: Color.fromARGB(255, 247, 192, 155)),
             ),
           ),
 
           // Skip button, onTab will send last intro page
           Positioned(
-              top: 720,
-              left: 20,
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      _controller.jumpToPage(2);
-                    },
-                    child: Container(
-                      width: 165,
-                      height: 60,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(24),
-                          color: AppColors.defaultKarrot),
-                      child: const Padding(
-                        padding: EdgeInsets.only(top: 17),
-                        child: Text(
-                          "Skip",
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w800),
-                          textAlign: TextAlign.center,
-                        ),
+            top: 740,
+            left: 30,
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    _controller.jumpToPage(2);
+                  },
+                  child: Container(
+                    width: 145,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: AppColors.defaultKarrot),
+                    child: const Center(
+                      child: Text(
+                        "Skip",
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w800),
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  SizedBox(
-                    child: onLastPage
-                        ? GestureDetector(
-                            onTap: () async {
-                              Navigator.pushReplacementNamed(context, otp);
-                            },
-                            child: Container(
-                              width: 165,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(24),
-                                  color: AppColors.defaultKarrot),
-                              child: const Padding(
-                                padding: EdgeInsets.only(top: 20),
-                                child: Text(
-                                  "Done",
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w800),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                          )
-                        // Next buttons to send next page
-                        : GestureDetector(
-                            onTap: () async {
-                              _controller.nextPage(
-                                  duration: const Duration(milliseconds: 500),
-                                  curve: Curves.easeIn);
-                            },
-                            child: Container(
-                              width: 165,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(24),
-                                  color: AppColors.defaultKarrot),
-                              child: const Padding(
-                                padding: EdgeInsets.only(top: 20),
-                                child: Text(
-                                  "Next",
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w800),
-                                  textAlign: TextAlign.center,
-                                ),
+                ),
+                const SizedBox(
+                  width: 40,
+                ),
+                SizedBox(
+                  child: onLastPage
+                      ? GestureDetector(
+                          onTap: () async {
+                            Navigator.pushNamedAndRemoveUntil(context, tabBox,
+                                (Route<dynamic> route) => false);
+                          },
+                          child: Container(
+                            width: 145,
+                            height: 50,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                color: AppColors.defaultKarrot),
+                            child: const Center(
+                              child: Text(
+                                "Done",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w800),
+                                textAlign: TextAlign.center,
                               ),
                             ),
                           ),
-                  ),
-                ],
-              )),
+                        )
+                      // Next buttons to send next page
+                      : GestureDetector(
+                          onTap: () async {
+                            _controller.nextPage(
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.easeIn);
+                          },
+                          child: Container(
+                            width: 145,
+                            height: 50,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                color: AppColors.defaultKarrot),
+                            child: const Center(
+                              child: Text(
+                                "Next",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w800),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+                )
+              ],
+            ),
+          ),
+          // Next and Done buttons to send next page
         ],
       ),
     );
