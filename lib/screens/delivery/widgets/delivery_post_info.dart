@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../../utils/color.dart';
+import '../../../utils/constants.dart';
 import '../../../utils/style.dart';
 
 class DeliveryPostInfo extends StatelessWidget {
@@ -14,7 +14,7 @@ class DeliveryPostInfo extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: AppColors.black,
           ),
@@ -24,7 +24,7 @@ class DeliveryPostInfo extends StatelessWidget {
           "Deliveries info",
           style: AppTextStyle.sfProBlack.copyWith(
             color: AppColors.black,
-            fontSize: 24,
+            fontSize: 24.sp,
           ),
         ),
         backgroundColor: AppColors.white,
@@ -37,81 +37,81 @@ class DeliveryPostInfo extends StatelessWidget {
           children: [
             Text(
               "Full Name",
-              style: AppTextStyle.sfProMedium.copyWith(fontSize: 18),
+              style: AppTextStyle.sfProMedium.copyWith(fontSize: 18.sp),
             ),
-            const SizedBox(
-              height: 5,
+            SizedBox(
+              height: 5.h,
             ),
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.person,
                     color: AppColors.defaultKarrot,
                   ),
-                  const SizedBox(
-                    width: 10,
+                  SizedBox(
+                    width: 10.w,
                   ),
                   Text(
                     "Micheal Sam",
-                    style: AppTextStyle.sfProRegular.copyWith(fontSize: 18),
+                    style: AppTextStyle.sfProRegular.copyWith(fontSize: 18.sp),
                   ),
                 ],
               ),
             ),
-            const SizedBox(
-              height: 5,
+            SizedBox(
+              height: 5.h,
             ),
             Text(
               "Phone Number",
-              style: AppTextStyle.sfProMedium.copyWith(fontSize: 18),
+              style: AppTextStyle.sfProMedium.copyWith(fontSize: 18.sp),
             ),
-            const SizedBox(
-              height: 5,
+            SizedBox(
+              height: 5.h,
             ),
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.phone,
                     color: AppColors.defaultKarrot,
                   ),
-                  const SizedBox(
-                    width: 10,
+                  SizedBox(
+                    width: 10.w,
                   ),
                   Text(
                     "+998 99 999 99 99",
-                    style: AppTextStyle.sfProRegular.copyWith(fontSize: 18),
+                    style: AppTextStyle.sfProRegular.copyWith(fontSize: 18.sp),
                   ),
                 ],
               ),
             ),
-            const SizedBox(
-              height: 5,
+            SizedBox(
+              height: 5.h,
             ),
             Text(
               "City / Province",
-              style: AppTextStyle.sfProMedium.copyWith(fontSize: 18),
+              style: AppTextStyle.sfProMedium.copyWith(fontSize: 18.sp),
             ),
-            const SizedBox(
-              height: 5,
+            SizedBox(
+              height: 5.h,
             ),
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.arrow_downward_rounded,
                     color: AppColors.defaultKarrot,
                   ),
-                  const SizedBox(
-                    width: 10,
+                  SizedBox(
+                    width: 10.w,
                   ),
                   Text(
                     "Tashkent, Mirobod district",
-                    style: AppTextStyle.sfProMedium.copyWith(fontSize: 18),
+                    style: AppTextStyle.sfProMedium.copyWith(fontSize: 18.sp),
                   ),
                 ],
               ),
@@ -120,59 +120,64 @@ class DeliveryPostInfo extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               child: Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.location_on,
                     color: AppColors.defaultKarrot,
                   ),
-                  const SizedBox(
-                    width: 10,
+                  SizedBox(
+                    width: 10.w,
                   ),
                   Text(
                     "Korea, Seul",
-                    style: AppTextStyle.sfProMedium.copyWith(fontSize: 18),
+                    style: AppTextStyle.sfProMedium.copyWith(fontSize: 18.sp),
                   ),
                 ],
               ),
             ),
-            const SizedBox(
-              height: 5,
+            SizedBox(
+              height: 5.h,
             ),
             Text(
               "Detail Location",
-              style: AppTextStyle.sfProMedium.copyWith(fontSize: 18),
+              style: AppTextStyle.sfProMedium.copyWith(fontSize: 18.sp),
             ),
-            const SizedBox(
-              height: 5,
+            SizedBox(
+              height: 5.h,
             ),
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Text(
                 "Tashkent, Mirobod district, Oybek Building 16D, Green House with big tree",
-                style: AppTextStyle.sfProRegular.copyWith(fontSize: 18),
+                style: AppTextStyle.sfProRegular.copyWith(fontSize: 18.sp),
               ),
             ),
-            const SizedBox(
-              height: 25,
+            SizedBox(
+              height: 25.h,
             ),
             Row(
               children: [
                 Expanded(
-                  child: Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: AppColors.defaultKarrot,
-                      borderRadius: BorderRadius.circular(20),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, chat);
+                    },
+                    child: Container(
+                      height: 50.h,
+                      decoration: BoxDecoration(
+                        color: AppColors.defaultKarrot,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Center(
+                          child: Text(
+                        'Chat',
+                        style: AppTextStyle.sfProMedium
+                            .copyWith(fontSize: 18.sp, color: AppColors.white),
+                      )),
                     ),
-                    child: Center(
-                        child: Text(
-                      'Chat',
-                      style: AppTextStyle.sfProMedium
-                          .copyWith(fontSize: 18, color: AppColors.white),
-                    )),
                   ),
                 ),
-                const SizedBox(
-                  width: 20,
+                SizedBox(
+                  width: 20.h,
                 ),
                 Expanded(
                   child: GestureDetector(
@@ -185,8 +190,8 @@ class DeliveryPostInfo extends StatelessWidget {
                       }
                     },
                     child: Container(
-                      width: 150,
-                      height: 50,
+                      width: 150.w,
+                      height: 50.h,
                       decoration: BoxDecoration(
                         color: AppColors.defaultKarrot,
                         borderRadius: BorderRadius.circular(20),
@@ -195,7 +200,7 @@ class DeliveryPostInfo extends StatelessWidget {
                           child: Text(
                         'Call',
                         style: AppTextStyle.sfProMedium
-                            .copyWith(fontSize: 18, color: AppColors.white),
+                            .copyWith(fontSize: 18.sp, color: AppColors.white),
                       )),
                     ),
                   ),

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../data/models/korea_model/korea_data.dart';
 import '../../../data/models/korea_model/korea_model.dart';
 import '../../../data/models/uzb_model/uzb_data.dart';
@@ -21,7 +21,7 @@ class _CitySelectorState extends State<CitySelector> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         children: [
           GestureDetector(
@@ -32,8 +32,8 @@ class _CitySelectorState extends State<CitySelector> {
                   return AlertDialog(
                     title: const Text("Select sending location"),
                     content: SizedBox(
-                      height: 200,
-                      width: 200,
+                      height: 200.h,
+                      width: 200.w,
                       child: Container(
                           color: Colors.white,
                           child: FutureBuilder<UzbModel>(
@@ -55,10 +55,12 @@ class _CitySelectorState extends State<CitySelector> {
                                           Navigator.pop(context);
                                         },
                                         child: Container(
-                                          width: 155,
+                                          width: 155.w,
                                           margin: const EdgeInsets.all(5),
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 20, vertical: 10),
+                                          padding: EdgeInsets.symmetric(
+                                                  horizontal: 20.w,
+                                                  vertical: 10)
+                                              .h,
                                           decoration: BoxDecoration(
                                             color: AppColors.defaultKarrot,
                                             borderRadius:
@@ -82,16 +84,16 @@ class _CitySelectorState extends State<CitySelector> {
               );
             },
             child: Container(
-              width: 160,
-              height: 50,
+              width: 145.w,
+              height: 50.h,
               decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: AppColors.black),
+                  border: Border.all(width: 1.w, color: AppColors.black),
                   borderRadius: BorderRadius.circular(20)),
               child: Center(
                   child: Text(
                 countryFrom,
                 style: AppTextStyle.sfProRegular.copyWith(
-                  fontSize: 16,
+                  fontSize: 16.sp,
                   color: AppColors.black,
                 ),
                 textAlign: TextAlign.center,
@@ -116,8 +118,8 @@ class _CitySelectorState extends State<CitySelector> {
                   return AlertDialog(
                     title: const Text("Select destination"),
                     content: SizedBox(
-                      height: 200,
-                      width: 200,
+                      height: 200.h,
+                      width: 200.h,
                       child: Container(
                           color: Colors.white,
                           child: FutureBuilder<KoreaModel>(
@@ -139,10 +141,10 @@ class _CitySelectorState extends State<CitySelector> {
                                           Navigator.pop(context);
                                         },
                                         child: Container(
-                                          width: 155,
+                                          width: 155.w,
                                           margin: const EdgeInsets.all(5),
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 20, vertical: 10),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 20.h, vertical: 10.w),
                                           decoration: BoxDecoration(
                                             color: AppColors.defaultKarrot,
                                             borderRadius:
@@ -173,17 +175,17 @@ class _CitySelectorState extends State<CitySelector> {
               );
             },
             child: Container(
-              width: 160,
-              height: 50,
+              width: 145.w,
+              height: 50.h,
               decoration: BoxDecoration(
-                border: Border.all(width: 1, color: AppColors.black),
+                border: Border.all(width: 1.w, color: AppColors.black),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Center(
                   child: Text(
                 countryWhere,
                 style: AppTextStyle.sfProRegular
-                    .copyWith(fontSize: 16, color: AppColors.black),
+                    .copyWith(fontSize: 16.sp, color: AppColors.black),
                 textAlign: TextAlign.center,
               )),
             ),

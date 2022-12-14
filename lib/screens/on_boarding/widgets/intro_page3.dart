@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../utils/color.dart';
@@ -17,8 +18,8 @@ class IntorPage3 extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Lottie.asset(AppIcon.boarding3),
-          const SizedBox(
-            height: 16,
+          SizedBox(
+            height: 16.h,
           ),
           const Text(
             "Chat with clients",
@@ -27,13 +28,13 @@ class IntorPage3 extends StatelessWidget {
                 fontWeight: FontWeight.w800,
                 color: AppColors.black),
           ),
-          const SizedBox(
-            height: 16,
+          SizedBox(
+            height: 16.h,
           ),
-          const Text(
+          Text(
             "You can chat with clients and with your consumer",
             style: TextStyle(
-                fontSize: 15,
+                fontSize: 15.sp,
                 fontWeight: FontWeight.w400,
                 color: AppColors.black),
             textAlign: TextAlign.center,

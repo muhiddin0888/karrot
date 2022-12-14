@@ -16,6 +16,8 @@ class AppIcon {
   static const verifyNumber = "assets/lottie/verify.json";
   static const otp = "assets/lottie/otp.json";
   static const deliveryGuy = "assets/lottie/delivery-guy.json";
+  static const postButton = "assets/lottie/post_button.json";
+  static const done = "assets/lottie/done.json";
 
   static const List<String> userImg = [
     "assets/images/users/user_1.png",

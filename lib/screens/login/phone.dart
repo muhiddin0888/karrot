@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import '../../../utils/constants.dart';
 import '../../../utils/icon.dart';
@@ -27,7 +28,7 @@ class _MyPhoneState extends State<MyPhone> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.only(left: 25, right: 25),
+        margin: const EdgeInsets.only(left: 25, right: 25),
         alignment: Alignment.center,
         child: SingleChildScrollView(
           child: Column(
@@ -35,35 +36,35 @@ class _MyPhoneState extends State<MyPhone> {
             children: [
               Lottie.asset(
                 AppIcon.otp,
-                width: 150,
-                height: 150,
+                width: 150.w,
+                height: 150.h,
               ),
-              const SizedBox(
-                height: 25,
+              SizedBox(
+                height: 25.h,
               ),
-              const Text(
+              Text(
                 "Phone Verification",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 10.h,
               ),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: 30.h,
               ),
               Container(
-                height: 55,
+                height: 55.h,
                 decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.grey),
+                    border: Border.all(width: 1.w, color: Colors.grey),
                     borderRadius: BorderRadius.circular(10)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(
-                      width: 10,
+                    SizedBox(
+                      width: 10.w,
                     ),
                     SizedBox(
-                      width: 40,
+                      width: 40.w,
                       child: TextField(
                         controller: countryCode,
                         keyboardType: TextInputType.number,
@@ -72,12 +73,12 @@ class _MyPhoneState extends State<MyPhone> {
                         ),
                       ),
                     ),
-                    const Text(
+                    Text(
                       "|",
-                      style: TextStyle(fontSize: 33, color: Colors.grey),
+                      style: TextStyle(fontSize: 33.sp, color: Colors.grey),
                     ),
-                    const SizedBox(
-                      width: 10,
+                    SizedBox(
+                      width: 10.w,
                     ),
                     Expanded(
                         child: TextField(
@@ -93,12 +94,12 @@ class _MyPhoneState extends State<MyPhone> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 20.h,
               ),
               SizedBox(
                 width: double.infinity,
-                height: 45,
+                height: 45.h,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.defaultKarrot,

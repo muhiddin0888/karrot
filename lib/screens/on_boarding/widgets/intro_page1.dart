@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:phone_otp_ui/utils/icon.dart';
 
@@ -19,23 +20,23 @@ class IntorPage1 extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Lottie.asset(AppIcon.boarding1),
-            const SizedBox(
-              height: 16,
+            SizedBox(
+              height: 16.h,
             ),
-            const Text(
+            Text(
               "Send Your packages easily",
               style: TextStyle(
-                  fontSize: 28,
+                  fontSize: 28.sp,
                   fontWeight: FontWeight.w800,
                   color: AppColors.black),
             ),
-            const SizedBox(
-              height: 42,
+            SizedBox(
+              height: 42.h,
             ),
-            const Text(
+            Text(
               "You can easily find person to send your packages to one country to another country, search best option to send your packages your city",
               style: TextStyle(
-                  fontSize: 15,
+                  fontSize: 15.sp,
                   fontWeight: FontWeight.w400,
                   color: AppColors.black),
               textAlign: TextAlign.center,

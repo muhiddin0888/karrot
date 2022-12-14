@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:phone_otp_ui/screens/on_boarding/widgets/intro_page1.dart';
 import 'package:phone_otp_ui/screens/on_boarding/widgets/intro_page2.dart';
 import 'package:phone_otp_ui/screens/on_boarding/widgets/intro_page3.dart';
@@ -56,8 +57,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
           // Skip button, onTab will send last intro page
           Positioned(
-            top: 740,
-            left: 30,
+            top: MediaQuery.of(context).size.height * 0.9,
+            left: MediaQuery.of(context).size.height * 0.03,
             child: Row(
               children: [
                 GestureDetector(
@@ -65,16 +66,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     _controller.jumpToPage(2);
                   },
                   child: Container(
-                    width: 145,
-                    height: 50,
+                    width: 145.w,
+                    height: 50.h,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
                         color: AppColors.defaultKarrot),
-                    child: const Center(
+                    child: Center(
                       child: Text(
                         "Skip",
                         style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 18.sp,
                             color: Colors.white,
                             fontWeight: FontWeight.w800),
                         textAlign: TextAlign.center,
@@ -82,27 +83,27 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  width: 40,
+                SizedBox(
+                  width: 20.w,
                 ),
                 SizedBox(
                   child: onLastPage
                       ? GestureDetector(
                           onTap: () async {
-                            Navigator.pushNamedAndRemoveUntil(context, tabBox,
+                            Navigator.pushNamedAndRemoveUntil(context, navBar,
                                 (Route<dynamic> route) => false);
                           },
                           child: Container(
-                            width: 145,
-                            height: 50,
+                            width: 145.w,
+                            height: 50.h,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(16),
                                 color: AppColors.defaultKarrot),
-                            child: const Center(
+                            child: Center(
                               child: Text(
                                 "Done",
                                 style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 18.sp,
                                     color: Colors.white,
                                     fontWeight: FontWeight.w800),
                                 textAlign: TextAlign.center,
@@ -118,16 +119,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                 curve: Curves.easeIn);
                           },
                           child: Container(
-                            width: 145,
-                            height: 50,
+                            width: 145.w,
+                            height: 50.h,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(16),
                                 color: AppColors.defaultKarrot),
-                            child: const Center(
+                            child: Center(
                               child: Text(
                                 "Next",
                                 style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 18.sp,
                                     color: Colors.white,
                                     fontWeight: FontWeight.w800),
                                 textAlign: TextAlign.center,

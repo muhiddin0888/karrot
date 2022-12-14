@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../utils/color.dart';
 import '../../utils/style.dart';
@@ -15,7 +16,7 @@ class ChatScreen extends StatelessWidget {
         "Chat",
         style: AppTextStyle.sfProBlack.copyWith(
           color: AppColors.black,
-          fontSize: 24,
+          fontSize: 24.sp,
         ),
       ),
       actions: [

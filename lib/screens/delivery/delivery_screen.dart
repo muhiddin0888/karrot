@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:phone_otp_ui/screens/delivery/widgets/city_selector.dart';
 import 'package:phone_otp_ui/screens/delivery/widgets/delivery_post.dart';
@@ -25,7 +26,7 @@ class _DeliveryScreenState extends State<DeliveryScreen> {
           "Delivery",
           style: AppTextStyle.sfProBlack.copyWith(
             color: AppColors.black,
-            fontSize: 24,
+            fontSize: 24.sp,
           ),
         ),
         actions: [
@@ -48,23 +49,25 @@ class _DeliveryScreenState extends State<DeliveryScreen> {
       ),
       body: ListView(
         children: [
-          const SizedBox(
-            height: 15,
+          SizedBox(
+            height: 15.h,
           ),
           const CitySelector(),
           Lottie.asset(AppIcon.deliveryGuy),
-          DeliveryPost(onTap: () {
-            Navigator.pushNamed(context, deliverInfo);
-          }),
-          DeliveryPost(onTap: () {}),
-          DeliveryPost(onTap: () {}),
-          DeliveryPost(onTap: () {}),
-          DeliveryPost(onTap: () {}),
-          DeliveryPost(onTap: () {}),
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const ClampingScrollPhysics(),
+            itemCount: 20,
+            itemBuilder: (context, index) => DeliveryPost(onTap: () {
+              Navigator.pushNamed(context, deliverInfo);
+            }),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, createPost);
+        },
         backgroundColor: AppColors.defaultKarrot,
         child: const Icon(Icons.add),
       ),

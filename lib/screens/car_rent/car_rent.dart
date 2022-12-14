@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:phone_otp_ui/screens/car_rent/widgets/car_rent_info.dart';
 import 'package:phone_otp_ui/screens/car_rent/widgets/car_rent_post.dart';
 import 'package:phone_otp_ui/utils/icon.dart';
 
@@ -17,7 +19,7 @@ class CarRentScreen extends StatelessWidget {
           "Car Rent",
           style: AppTextStyle.sfProBlack.copyWith(
             color: AppColors.black,
-            fontSize: 24,
+            fontSize: 24.sp,
           ),
         ),
         actions: [
@@ -37,44 +39,19 @@ class CarRentScreen extends StatelessWidget {
         ],
         backgroundColor: AppColors.white,
       ),
-      body: ListView(children: [
-        CarRentPost(
-          onTap: () {},
+      body: ListView(
+          children: List.generate(
+        20,
+        (index) => CarRentPost(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const CarRentInfoScreen()));
+          },
           img: AppIcon.carRent1,
         ),
-        CarRentPost(
-          onTap: () {},
-          img: AppIcon.carRent2,
-        ),
-        CarRentPost(
-          onTap: () {},
-          img: AppIcon.carRent1,
-        ),
-        CarRentPost(
-          onTap: () {},
-          img: AppIcon.carRent2,
-        ),
-        CarRentPost(
-          onTap: () {},
-          img: AppIcon.carRent1,
-        ),
-        CarRentPost(
-          onTap: () {},
-          img: AppIcon.carRent2,
-        ),
-        CarRentPost(
-          onTap: () {},
-          img: AppIcon.carRent1,
-        ),
-        CarRentPost(
-          onTap: () {},
-          img: AppIcon.carRent2,
-        ),
-        CarRentPost(
-          onTap: () {},
-          img: AppIcon.carRent1,
-        ),
-      ]),
+      )),
     );
   }
 }

@@ -1,12 +1,13 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
-import 'package:phone_otp_ui/utils/constants.dart';
 import 'package:phone_otp_ui/screens/login/phone.dart';
 import 'package:phone_otp_ui/utils/icon.dart';
 import 'package:pinput/pinput.dart';
 import '../../utils/color.dart';
+import '../../utils/constants.dart';
 
 class MyVerify extends StatefulWidget {
   const MyVerify({Key? key}) : super(key: key);
@@ -36,7 +37,7 @@ class _MyVerifyState extends State<MyVerify> {
         elevation: 0,
       ),
       body: Container(
-        margin: const EdgeInsets.only(left: 25, right: 25),
+        margin: EdgeInsets.only(left: 25.w, right: 25.w),
         alignment: Alignment.center,
         child: SingleChildScrollView(
           child: Column(
@@ -44,28 +45,28 @@ class _MyVerifyState extends State<MyVerify> {
             children: [
               Lottie.asset(
                 AppIcon.verifyNumber,
-                width: 150,
-                height: 150,
+                width: 150.w,
+                height: 150.h,
               ),
-              const SizedBox(
-                height: 25,
+              SizedBox(
+                height: 25.h,
               ),
-              const Text(
+              Text(
                 "Phone Verification",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 10.h,
               ),
-              const Text(
+              Text(
                 "We need to register your phone without getting started!",
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 16.sp,
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: 30.h,
               ),
               Pinput(
                 length: 6,
@@ -75,12 +76,12 @@ class _MyVerifyState extends State<MyVerify> {
                 showCursor: true,
                 onCompleted: (pin) => log(pin),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 20.h,
               ),
               SizedBox(
                 width: double.infinity,
-                height: 45,
+                height: 45.h,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.defaultKarrot,
@@ -94,12 +95,12 @@ class _MyVerifyState extends State<MyVerify> {
 
                         await auth.signInWithCredential(credential);
                         Navigator.pushNamedAndRemoveUntil(
-                            context, tabBox, (Route<dynamic> route) => false);
+                            context, navBar, (Route<dynamic> route) => false);
                       } catch (e) {
                         log("Error");
                       }
                     },
-                    child: const Text("Verify Phone Number")),
+                    child: Text("Verify Phone Number")),
               ),
               Row(
                 children: [

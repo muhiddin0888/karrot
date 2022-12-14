@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:phone_otp_ui/utils/icon.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../utils/color.dart';
 import '../../../utils/style.dart';
@@ -16,11 +15,11 @@ class CarRentPost extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: double.infinity,
-        height: 110,
-        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+        height: 110.h,
+        margin: EdgeInsets.symmetric(horizontal: 8.h, vertical: 5.w),
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-            border: Border.all(width: 1, color: AppColors.black),
+            border: Border.all(width: 1.w, color: AppColors.black),
             borderRadius: BorderRadius.circular(20)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -30,12 +29,13 @@ class CarRentPost extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
               child: Image.asset(
                 img,
-                width: 150,
+                height: 200,
+                width: 150.w,
                 fit: BoxFit.cover,
               ),
             ),
-            const SizedBox(
-              width: 10,
+            SizedBox(
+              width: 10.w,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,35 +43,35 @@ class CarRentPost extends StatelessWidget {
               children: [
                 Text(
                   "Doge Chalanger",
-                  style: AppTextStyle.sfProMedium.copyWith(fontSize: 18),
+                  style: AppTextStyle.sfProMedium.copyWith(fontSize: 18.sp),
                 ),
                 Row(
                   children: [
                     Text(
                       "Sell",
                       style: AppTextStyle.sfProRegular
-                          .copyWith(fontSize: 16, color: AppColors.black),
+                          .copyWith(fontSize: 16.sp, color: AppColors.black),
                     ),
                     SizedBox(
-                      width: 10,
+                      width: 10.w,
                     ),
                     Text(
                       "Boosted 40s",
                       style: AppTextStyle.sfProRegular
-                          .copyWith(fontSize: 16, color: AppColors.black),
+                          .copyWith(fontSize: 16.sp, color: AppColors.black),
                     ),
                   ],
                 ),
                 Text(
                   "300 000 USD",
-                  style: AppTextStyle.sfProBold.copyWith(fontSize: 18),
+                  style: AppTextStyle.sfProBold.copyWith(fontSize: 18.sp),
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
+                  children: [
                     SizedBox(
-                      width: 130,
+                      width: 110.w,
                     ),
                     Icon(Icons.chat_bubble_outline_outlined),
                     Icon(Icons.favorite_border),

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:phone_otp_ui/screens/chat/chat_screen.dart';
+import 'package:phone_otp_ui/screens/delivery/crate_post/create_post.dart';
 import 'package:phone_otp_ui/screens/delivery/widgets/delivery_post_info.dart';
 import 'package:phone_otp_ui/screens/nav_bar.dart';
 import 'package:phone_otp_ui/screens/notification/notification_screen.dart';
 import 'package:phone_otp_ui/screens/on_boarding/on_boadring.dart';
 import 'package:phone_otp_ui/screens/splash_scree.dart';
+import 'package:phone_otp_ui/task4/chatpage.dart';
 import 'package:phone_otp_ui/utils/constants.dart';
 import 'package:phone_otp_ui/screens/login/phone.dart';
 import 'package:phone_otp_ui/screens/login/verify.dart';
@@ -15,7 +18,7 @@ class MyRouter {
         return navigateTo(const SplashScreen());
       case onBoarding:
         return navigateTo(const OnBoardingScreen());
-      case tabBox:
+      case navBar:
         return navigateTo(const TabBox());
       case otp:
         return navigateTo(const MyPhone());
@@ -25,6 +28,10 @@ class MyRouter {
         return navigateTo(const NotificationScreen());
       case deliverInfo:
         return navigateTo(const DeliveryPostInfo());
+      case chat:
+        return navigateTo(const ChatScreen());
+      case createPost:
+        return navigateTo(const CreatePostScreen());
       default:
         return navigateTo(
           Scaffold(
