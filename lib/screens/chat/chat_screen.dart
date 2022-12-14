@@ -21,13 +21,13 @@ class ChatScreen extends StatelessWidget {
       actions: [
         IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
               color: AppColors.black,
             )),
         IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.notifications,
               color: AppColors.black,
             )),

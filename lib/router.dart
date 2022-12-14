@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:phone_otp_ui/screens/delivery/widgets/delivery_post_info.dart';
 import 'package:phone_otp_ui/screens/nav_bar.dart';
+import 'package:phone_otp_ui/screens/notification/notification_screen.dart';
 import 'package:phone_otp_ui/screens/on_boarding/on_boadring.dart';
 import 'package:phone_otp_ui/screens/splash_scree.dart';
-import 'package:phone_otp_ui/task2/map.dart';
-import 'package:phone_otp_ui/task4/login.dart';
 import 'package:phone_otp_ui/utils/constants.dart';
-import 'package:phone_otp_ui/home.dart';
-import 'package:phone_otp_ui/login/phone.dart';
-import 'package:phone_otp_ui/login/verify.dart';
+import 'package:phone_otp_ui/screens/login/phone.dart';
+import 'package:phone_otp_ui/screens/login/verify.dart';
 
 class MyRouter {
   static Route generateRoute(RouteSettings settings) {
@@ -22,12 +21,10 @@ class MyRouter {
         return navigateTo(const MyPhone());
       case verify:
         return navigateTo(const MyVerify());
-      // case home:
-      //   return navigateTo(HomePage());
-      // case map:
-      //   return navigateTo(const MapPage());
-      // case chat:
-      //   return navigateTo(const LogIn());
+      case notification:
+        return navigateTo(const NotificationScreen());
+      case deliverInfo:
+        return navigateTo(const DeliveryPostInfo());
       default:
         return navigateTo(
           Scaffold(

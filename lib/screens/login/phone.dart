@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import '../../utils/constants.dart';
-import '../../utils/icon.dart';
-import '../utils/color.dart';
+import '../../../utils/constants.dart';
+import '../../../utils/icon.dart';
+import '../../utils/color.dart';
 
 class MyPhone extends StatefulWidget {
   const MyPhone({Key? key}) : super(key: key);

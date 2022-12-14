@@ -4,3 +4,5 @@ const String tabBox = '/tab_page';
 const String onBoarding = '/on_boarding';
 const String otp = '/otp';
 const String verify = '/verify';
+const String notification = '/notification';
+const String deliverInfo = '/deliverInfo';

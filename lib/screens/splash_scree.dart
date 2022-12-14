@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phone_otp_ui/utils/color.dart';
 import '../utils/constants.dart';
 import '../utils/icon.dart';
 
@@ -26,6 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.white,
       body: Center(child: Image.asset(AppIcon.splash)),
     );
   }

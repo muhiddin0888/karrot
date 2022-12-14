@@ -3,10 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:phone_otp_ui/utils/constants.dart';
-import 'package:phone_otp_ui/login/phone.dart';
+import 'package:phone_otp_ui/screens/login/phone.dart';
 import 'package:phone_otp_ui/utils/icon.dart';
 import 'package:pinput/pinput.dart';
-import '../utils/color.dart';
+import '../../utils/color.dart';
 
 class MyVerify extends StatefulWidget {
   const MyVerify({Key? key}) : super(key: key);
