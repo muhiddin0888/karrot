@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phone_otp_ui/utils/color.dart';
+import '../data/local_data/storage.dart';
 import '../utils/constants.dart';
 import '../utils/icon.dart';
 
@@ -15,7 +16,15 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(
       const Duration(seconds: 4),
     );
-    Navigator.pushReplacementNamed(context, onBoarding);
+    await StorageRepository.getInstance();
+    var isLogged = StorageRepository.getBool("isLogged");
+    print(isLogged);
+    if (!mounted) return;
+    if (isLogged) {
+      Navigator.pushReplacementNamed(context, navBar);
+    } else {
+      Navigator.pushReplacementNamed(context, onBoarding);
+    }
   }
 
   @override

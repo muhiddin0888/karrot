@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:phone_otp_ui/utils/constants.dart';
 import 'package:phone_otp_ui/utils/icon.dart';
 
+import '../../data/local_data/storage.dart';
 import '../../utils/color.dart';
 import '../../utils/style.dart';
 
@@ -171,7 +173,12 @@ class ProfileScreen extends StatelessWidget {
                         height: 30.h,
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () async {
+                          await StorageRepository.deleteBool("isLogged");
+                          await StorageRepository.deleteString("phone_number");
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, otp, (Route<dynamic> route) => false);
+                        },
                         child: Container(
                           width: 250.w,
                           height: 50.h,

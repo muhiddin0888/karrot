@@ -6,6 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:phone_otp_ui/screens/login/phone.dart';
 import 'package:phone_otp_ui/utils/icon.dart';
 import 'package:pinput/pinput.dart';
+import '../../data/local_data/storage.dart';
 import '../../utils/color.dart';
 import '../../utils/constants.dart';
 
@@ -92,15 +93,16 @@ class _MyVerifyState extends State<MyVerify> {
                         PhoneAuthCredential credential =
                             PhoneAuthProvider.credential(
                                 verificationId: MyPhone.verify, smsCode: code);
-
                         await auth.signInWithCredential(credential);
+                        await StorageRepository.putBool("isLogged", true);
+                        if (!mounted) return; // New added need to check
                         Navigator.pushNamedAndRemoveUntil(
                             context, navBar, (Route<dynamic> route) => false);
                       } catch (e) {
                         log("Error");
                       }
                     },
-                    child: Text("Verify Phone Number")),
+                    child: const Text("Verify Phone Number")),
               ),
               Row(
                 children: [

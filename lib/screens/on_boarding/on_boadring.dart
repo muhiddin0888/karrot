@@ -90,8 +90,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   child: onLastPage
                       ? GestureDetector(
                           onTap: () async {
-                            Navigator.pushNamedAndRemoveUntil(context, navBar,
-                                (Route<dynamic> route) => false);
+                            Navigator.pushNamedAndRemoveUntil(
+                                context, otp, (Route<dynamic> route) => false);
                           },
                           child: Container(
                             width: 145.w,

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import '../../../utils/constants.dart';
 import '../../../utils/icon.dart';
+import '../../data/local_data/storage.dart';
 import '../../utils/color.dart';
 
 class MyPhone extends StatefulWidget {
@@ -16,12 +17,17 @@ class MyPhone extends StatefulWidget {
 
 class _MyPhoneState extends State<MyPhone> {
   TextEditingController countryCode = TextEditingController();
-  var phone = "";
+  String phone = "";
 
   @override
   void initState() {
     countryCode.text = "+998";
+    getInitials();
     super.initState();
+  }
+
+  void getInitials() {
+    phone = StorageRepository.getString("phone_number");
   }
 
   @override
@@ -118,6 +124,13 @@ class _MyPhoneState extends State<MyPhone> {
                         },
                         codeAutoRetrievalTimeout: (String verificationId) {},
                       );
+                      String mobilNumber = countryCode.text + phone;
+                      validateMobile(mobilNumber);
+                      if (phone != "null") {
+                        await StorageRepository.putString(
+                            key: "phone_number", value: mobilNumber);
+                        print("Mobile Number is: $mobilNumber");
+                      }
                     },
                     child: const Text("Send the code")),
               )
@@ -126,5 +139,16 @@ class _MyPhoneState extends State<MyPhone> {
         ),
       ),
     );
+  }
+
+  String validateMobile(String value) {
+    String patttern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+    RegExp regExp = new RegExp(patttern);
+    if (value.length == 0) {
+      return 'Please enter mobile number';
+    } else if (!regExp.hasMatch(value)) {
+      return 'Please enter valid mobile number';
+    }
+    return "null";
   }
 }
