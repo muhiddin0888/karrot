@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:phone_otp_ui/utils/constants.dart';
 import 'package:phone_otp_ui/utils/icon.dart';
-
 import '../../data/local_data/storage.dart';
 import '../../utils/color.dart';
 import '../../utils/style.dart';

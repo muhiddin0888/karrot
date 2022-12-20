@@ -1,11 +1,13 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:phone_otp_ui/screens/login/phone.dart';
 import 'package:phone_otp_ui/utils/icon.dart';
 import 'package:pinput/pinput.dart';
+import '../../cubits/user/user_cubit.dart';
 import '../../data/local_data/storage.dart';
 import '../../utils/color.dart';
 import '../../utils/constants.dart';
@@ -95,6 +97,9 @@ class _MyVerifyState extends State<MyVerify> {
                                 verificationId: MyPhone.verify, smsCode: code);
                         await auth.signInWithCredential(credential);
                         await StorageRepository.putBool("isLogged", true);
+                        await context
+                            .read<UserCubit>()
+                            .otpVerification(code: code, context: context);
                         if (!mounted) return; // New added need to check
                         Navigator.pushNamedAndRemoveUntil(
                             context, navBar, (Route<dynamic> route) => false);
@@ -110,7 +115,7 @@ class _MyVerifyState extends State<MyVerify> {
                       onPressed: () {
                         Navigator.pushNamedAndRemoveUntil(
                           context,
-                          'phone',
+                          otp,
                           (route) => false,
                         );
                       },

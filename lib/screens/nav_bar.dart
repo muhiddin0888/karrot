@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phone_otp_ui/screens/car_rent/car_rent.dart';
+import 'package:phone_otp_ui/screens/chat/chat_home_page.dart';
 import 'package:phone_otp_ui/screens/chat/chat_screen.dart';
 import 'package:phone_otp_ui/screens/delivery/delivery_screen.dart';
 import 'package:phone_otp_ui/screens/profile/profile_screen.dart';
@@ -24,7 +25,7 @@ class _TabBoxState extends State<TabBox> {
   List<Widget> screens = [
     const DeliveryScreen(),
     const CarRentScreen(),
-    const ChatScreen(),
+    const ChatHomePage(),
     const ProfileScreen()
   ];
 

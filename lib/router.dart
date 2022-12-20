@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phone_otp_ui/screens/chat/chat_home_page.dart';
 import 'package:phone_otp_ui/screens/chat/chat_screen.dart';
 import 'package:phone_otp_ui/screens/delivery/crate_post/create_post.dart';
 import 'package:phone_otp_ui/screens/delivery/widgets/delivery_post_info.dart';
@@ -29,7 +30,7 @@ class MyRouter {
       case deliverInfo:
         return navigateTo(const DeliveryPostInfo());
       case chat:
-        return navigateTo(const ChatScreen());
+        return navigateTo(const ChatHomePage());
       case createPost:
         return navigateTo(const CreatePostScreen());
       default:

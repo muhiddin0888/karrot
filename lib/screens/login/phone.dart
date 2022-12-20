@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import '../../../utils/constants.dart';
 import '../../../utils/icon.dart';
+import '../../cubits/user/user_cubit.dart';
 import '../../data/local_data/storage.dart';
 import '../../utils/color.dart';
 
@@ -112,24 +114,28 @@ class _MyPhoneState extends State<MyPhone> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),
                     onPressed: () async {
-                      await FirebaseAuth.instance.verifyPhoneNumber(
-                        phoneNumber: countryCode.text + phone,
-                        verificationCompleted:
-                            (PhoneAuthCredential credential) {},
-                        verificationFailed: (FirebaseAuthException e) {},
-                        codeSent: (String? verificationId, int? resendToken) {
-                          MyPhone.verify = verificationId!;
-                          Navigator.pushNamedAndRemoveUntil(
-                              context, verify, (Route<dynamic> route) => false);
-                        },
-                        codeAutoRetrievalTimeout: (String verificationId) {},
-                      );
+                      // await FirebaseAuth.instance.verifyPhoneNumber(
+                      //   phoneNumber: countryCode.text + phone,
+                      //   verificationCompleted:
+                      //       (PhoneAuthCredential credential) {},
+                      //   verificationFailed: (FirebaseAuthException e) {},
+                      //   codeSent: (String? verificationId, int? resendToken) {
+                      //     MyPhone.verify = verificationId!;
+                      //     Navigator.pushNamedAndRemoveUntil(
+                      //         context, verify, (Route<dynamic> route) => false);
+                      //   },
+                      //   codeAutoRetrievalTimeout: (String verificationId) {},
+                      // );
                       String mobilNumber = countryCode.text + phone;
                       validateMobile(mobilNumber);
                       if (phone != "null") {
                         await StorageRepository.putString(
                             key: "phone_number", value: mobilNumber);
-                        print("Mobile Number is: $mobilNumber");
+                        debugPrint("Mobile Number is: $mobilNumber");
+                        await context.read<UserCubit>().singInWithPhoneNumber(
+                            number: mobilNumber, context: context);
+                        await Navigator.pushNamedAndRemoveUntil(
+                            context, verify, (Route<dynamic> route) => false);
                       }
                     },
                     child: const Text("Send the code")),

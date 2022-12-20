@@ -41,6 +41,7 @@ class _CitySelectorState extends State<CitySelector> {
                                 AsyncSnapshot<UzbModel> snapshot) {
                               var data = UzbData.getUzbData();
                               return ListView.builder(
+                                physics: const BouncingScrollPhysics(),
                                 itemCount: data.length,
                                 itemBuilder: (context, index) => Center(
                                   child: Column(
@@ -127,6 +128,7 @@ class _CitySelectorState extends State<CitySelector> {
                                 AsyncSnapshot<KoreaModel> snapshot) {
                               var data = KoreaData.getKoreaData();
                               return ListView.builder(
+                                physics: const BouncingScrollPhysics(),
                                 itemCount: data.length,
                                 itemBuilder: (context, index) => Center(
                                   child: Column(
