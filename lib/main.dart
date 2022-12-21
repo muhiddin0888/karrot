@@ -3,10 +3,12 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:phone_otp_ui/data/api/api_provider.dart';
 import 'package:phone_otp_ui/utils/constants.dart';
 import 'package:phone_otp_ui/router.dart';
 
@@ -18,6 +20,7 @@ import 'data/repository/helper_repository.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await FirebaseMessaging.instance;
   // if (USE_EMULATOR) {
   //   _connectToFirebaseEmulator();
   // }
@@ -32,14 +35,15 @@ void main() async {
           providers: [
             BlocProvider(
               create: (context) => UserCubit(
-                helperRepository:
-                    HelperRepository(fireStore: FirebaseFirestore.instance),
-              ),
+                  helperRepository: HelperRepository(
+                      fireStore: FirebaseFirestore.instance,
+                      apiProvider: ApiProvider())),
             ),
             BlocProvider(
               create: (context) => ChatsCubit(
-                helperRepository:
-                    HelperRepository(fireStore: FirebaseFirestore.instance),
+                helperRepository: HelperRepository(
+                    fireStore: FirebaseFirestore.instance,
+                    apiProvider: ApiProvider()),
               ),
             ),
           ],
@@ -53,6 +57,8 @@ void main() async {
     ),
   );
 }
+
+
 
 // Future _connectToFirebaseEmulator() async {
 //   const fireStorePort = "127.0.0.1:8080 ";

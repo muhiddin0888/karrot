@@ -134,6 +134,7 @@ class _MyPhoneState extends State<MyPhone> {
                         debugPrint("Mobile Number is: $mobilNumber");
                         await context.read<UserCubit>().singInWithPhoneNumber(
                             number: mobilNumber, context: context);
+                        await Future.delayed(Duration(seconds: 2));
                         await Navigator.pushNamedAndRemoveUntil(
                             context, verify, (Route<dynamic> route) => false);
                       }

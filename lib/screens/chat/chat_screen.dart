@@ -35,6 +35,14 @@ class _ChatScreenState extends State<ChatScreen> {
     super.initState();
   }
 
+  void _scrollDown() {
+    scrollController.animateTo(
+      scrollController.position.maxScrollExtent,
+      duration: Duration(seconds: 2),
+      curve: Curves.fastOutSlowIn,
+    );
+  }
+
   final Stream<QuerySnapshot> _MessageStream = FirebaseFirestore.instance
       .collection('chats')
       .orderBy('creat_at')
@@ -54,13 +62,21 @@ class _ChatScreenState extends State<ChatScreen> {
             fontSize: 24.sp,
           ),
         ),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: AppColors.black,
+          ),
+          onPressed: () => Navigator.pop(context),
+        ),
         actions: [
           IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.search,
-                color: AppColors.black,
-              )),
+            onPressed: () {},
+            icon: const Icon(
+              Icons.search,
+              color: AppColors.black,
+            ),
+          ),
           IconButton(
             onPressed: () {},
             icon: const Icon(
@@ -88,6 +104,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           Expanded(
                             flex: 9,
                             child: ListView(
+                                shrinkWrap: true,
                                 controller: scrollController,
                                 padding: const EdgeInsets.all(20),
                                 physics: const BouncingScrollPhysics(),
@@ -134,13 +151,13 @@ class _ChatScreenState extends State<ChatScreen> {
                           ))
                         ],
                       )
-                    : const Center(child: Text("No Chats Avilable"));
+                    : const Center(child: Text("No Chats Available"));
               }
               return const Center(child: Text("error"));
             });
           }),
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(left: 26.0),
+        padding: EdgeInsets.only(left: 26.0.w),
         child: TextFormField(
           style: const TextStyle(color: Colors.black),
           controller: messagingController,
@@ -188,7 +205,8 @@ class _ChatScreenState extends State<ChatScreen> {
                 },
               )),
           onChanged: (v) {
-            // context.read<ChatsCubit>().getTwoUsersConversation(senderId: userReceiver, receiverId: user!.uid);
+            // context.read<ChatsCubit>().getTwoUsersConversation(
+            //     senderId: userReceiver, receiverId: user!.uid);
             scrollController.jumpTo(scrollController.position.maxScrollExtent);
           },
         ),

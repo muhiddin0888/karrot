@@ -1,11 +1,15 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:formz/formz.dart';
-import 'package:phone_otp_ui/utils/icon.dart';
+import 'package:phone_otp_ui/data/repository/helper_repository.dart';
 import '../../cubits/chats/chats_cubit.dart';
 import '../../cubits/user/user_cubit.dart';
+import '../../data/api/api_provider.dart';
+import '../../data/local_data/storage.dart';
 import '../../data/models/chat_mode/user_item.dart';
 import '../../utils/color.dart';
 import '../../utils/style.dart';
@@ -58,10 +62,8 @@ class _ChatHomePageState extends State<ChatHomePage> {
         backgroundColor: AppColors.white,
       ),
       body: BlocBuilder<UserCubit, UserState>(builder: (context, state) {
-        debugPrint("ifga keldik");
         debugPrint(state.users.toString());
         if (state.status == FormzStatus.submissionInProgress) {
-          print("ifga kedik");
           return const Center(child: CircularProgressIndicator.adaptive());
         } else if (state.status == FormzStatus.submissionSuccess) {
           users = state.users;
@@ -88,10 +90,9 @@ class _ChatHomePageState extends State<ChatHomePage> {
                           context.read<ChatsCubit>().getTwoUsersConversation(
                               senderId: users[index].userId,
                               receiverId: user!.uid.toString());
+                          debugPrint("my uid:  ${user!.uid.toString()}");
                           debugPrint(
-                              "meni uidiyim>>>> ${user!.uid.toString()}");
-                          debugPrint(
-                              "tanlangan  userni uidisi >>>>${users[index].userId}");
+                              "reserver user uid: ${users[index].userId}");
                         },
                         child: Column(
                           children: [
@@ -102,7 +103,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
                                   height: 100,
                                   child: ClipRRect(
                                       borderRadius: BorderRadius.circular(20),
-                                      child: Icon(
+                                      child: const Icon(
                                         Icons.person_pin,
                                         size: 80,
                                       )),

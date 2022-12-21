@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phone_otp_ui/screens/car_rent/car_rent.dart';
 import 'package:phone_otp_ui/screens/chat/chat_home_page.dart';
-import 'package:phone_otp_ui/screens/chat/chat_screen.dart';
 import 'package:phone_otp_ui/screens/delivery/delivery_screen.dart';
 import 'package:phone_otp_ui/screens/profile/profile_screen.dart';
 import 'package:phone_otp_ui/utils/color.dart';
@@ -42,7 +41,7 @@ class _TabBoxState extends State<TabBox> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: AppColors.white,
-        iconSize: 24,
+        iconSize: 30,
         onTap: (index) {
           setState(() {
             currentIndex = index;
@@ -67,6 +66,7 @@ class _TabBoxState extends State<TabBox> {
       label: labelText,
       icon: Icon(
         icon,
+        size: 26,
         color: const Color.fromARGB(255, 177, 175, 175),
       ),
       activeIcon: Icon(

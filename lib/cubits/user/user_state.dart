@@ -4,16 +4,13 @@ class UserState extends Equatable {
   const UserState({
     required this.users,
     required this.isAdded,
-    required this.allUsers,
     required this.errorText,
     required this.fields,
     required this.status,
-
-});
+  });
 
   final FormzStatus status;
   final List<UserItem> users;
-  final List<UserItem> allUsers;
   final Map<String, dynamic> fields;
   final String errorText;
   final bool isAdded;
@@ -29,7 +26,6 @@ class UserState extends Equatable {
       UserState(
         status: status ?? this.status,
         users: users ?? this.users,
-        allUsers: allUsers ?? this.allUsers,
         errorText: errorText ?? this.errorText,
         fields: fields ?? this.fields,
         isAdded: isAdded ?? this.isAdded,
@@ -37,11 +33,10 @@ class UserState extends Equatable {
 
   @override
   List<Object> get props => [
-    status,
-    fields,
-    errorText,
-    allUsers,
-    isAdded,
-    users,
-  ];
+        status,
+        fields,
+        errorText,
+        isAdded,
+        users,
+      ];
 }

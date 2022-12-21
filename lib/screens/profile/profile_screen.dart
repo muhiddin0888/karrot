@@ -60,10 +60,30 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(
                   width: 20.w,
                 ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text("Edit Profile"),
-                ),
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: AppColors.black),
+                    child: Row(children: [
+                      Text(
+                        "Edit Profile",
+                        style: AppTextStyle.sfProMedium
+                            .copyWith(color: AppColors.white),
+                      ),
+                      SizedBox(
+                        width: 2.w,
+                      ),
+                      const Icon(
+                        CupertinoIcons.slider_horizontal_3,
+                        color: AppColors.white,
+                        size: 24,
+                      )
+                    ]),
+                  ),
+                )
               ],
             ),
           ),
@@ -83,19 +103,6 @@ class ProfileScreen extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 10.0.h),
                   child: Column(
                     children: [
-                      Row(
-                        children: [
-                          Icon(Icons.lock),
-                          SizedBox(
-                            width: 7.w,
-                          ),
-                          Text(
-                            "Change Password",
-                            style: AppTextStyle.sfProRegular
-                                .copyWith(fontSize: 16.sp),
-                          ),
-                        ],
-                      ),
                       SizedBox(
                         height: 10.w,
                       ),
@@ -157,7 +164,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(Icons.people),
+                          const Icon(Icons.people),
                           SizedBox(
                             width: 7.w,
                           ),
@@ -173,10 +180,95 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          await StorageRepository.deleteBool("isLogged");
-                          await StorageRepository.deleteString("phone_number");
-                          Navigator.pushNamedAndRemoveUntil(
-                              context, otp, (Route<dynamic> route) => false);
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                  title:
+                                      const Text("You really want to logout"),
+                                  content: SizedBox(
+                                    height: 110.h,
+                                    width: 110.w,
+                                    child: Container(
+                                        color: Colors.white,
+                                        child: Column(
+                                          children: [
+                                            InkWell(
+                                              onTap: () async {
+                                                await StorageRepository
+                                                    .deleteBool("isLogged");
+                                                await StorageRepository
+                                                    .deleteString(
+                                                        "phone_number");
+                                                await StorageRepository
+                                                    .deleteString(
+                                                        "access_token");
+                                                Navigator
+                                                    .pushNamedAndRemoveUntil(
+                                                        context,
+                                                        otp,
+                                                        (Route<dynamic>
+                                                                route) =>
+                                                            false);
+                                              },
+                                              child: Container(
+                                                width: 250.w,
+                                                height: 50.h,
+                                                decoration: BoxDecoration(
+                                                  color:
+                                                      AppColors.defaultKarrot,
+                                                  borderRadius:
+                                                      BorderRadius.circular(30),
+                                                ),
+                                                child: Center(
+                                                  child: Text(
+                                                    'Yes, I am sure',
+                                                    style: AppTextStyle
+                                                        .sfProMedium
+                                                        .copyWith(
+                                                            fontSize: 18.sp,
+                                                            color: AppColors
+                                                                .white),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 10.h,
+                                            ),
+                                            InkWell(
+                                              onTap: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Container(
+                                                width: 250.w,
+                                                height: 50.h,
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      width: 1,
+                                                      color: AppColors
+                                                          .defaultKarrot),
+                                                  borderRadius:
+                                                      BorderRadius.circular(30),
+                                                ),
+                                                child: Center(
+                                                  child: Text(
+                                                    'No, go back',
+                                                    style: AppTextStyle
+                                                        .sfProMedium
+                                                        .copyWith(
+                                                            fontSize: 18.sp,
+                                                            color: AppColors
+                                                                .black),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        )),
+                                  ));
+                            },
+                          );
                         },
                         child: Container(
                           width: 250.w,
@@ -202,6 +294,15 @@ class ProfileScreen extends StatelessWidget {
           )
         ],
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () async {
+      //     String accessToken =
+      //         await StorageRepository.getString("access_token");
+      //     await context.read<UserCubit>().getUserInfo(accessToken: accessToken);
+      //   },
+      //   backgroundColor: AppColors.defaultKarrot,
+      //   child: const Icon(Icons.add),
+      // ),
     );
   }
 }

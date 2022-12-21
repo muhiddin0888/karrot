@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,6 +22,16 @@ class MyVerify extends StatefulWidget {
 
 class _MyVerifyState extends State<MyVerify> {
   final FirebaseAuth auth = FirebaseAuth.instance;
+  void initState() {
+    super.initState();
+    init();
+  }
+
+  void init() async {
+    String? FCMToken = await FirebaseMessaging.instance.getToken();
+    print("FCM TOKEN:$FCMToken");
+  }
+
   @override
   Widget build(BuildContext context) {
     String code = "";
@@ -92,19 +103,18 @@ class _MyVerifyState extends State<MyVerify> {
                             borderRadius: BorderRadius.circular(10))),
                     onPressed: () async {
                       try {
-                        PhoneAuthCredential credential =
-                            PhoneAuthProvider.credential(
-                                verificationId: MyPhone.verify, smsCode: code);
-                        await auth.signInWithCredential(credential);
+                        // PhoneAuthCredential credential =
+                        //     PhoneAuthProvider.credential(
+                        //         verificationId: MyPhone.verify, smsCode: code);
+                        // await auth.signInWithCredential(credential);
                         await StorageRepository.putBool("isLogged", true);
                         await context
                             .read<UserCubit>()
                             .otpVerification(code: code, context: context);
-                        if (!mounted) return; // New added need to check
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, navBar, (Route<dynamic> route) => false);
+                        // Navigator.pushNamedAndRemoveUntil(
+                        //     context, navBar, (Route<dynamic> route) => false);
                       } catch (e) {
-                        log("Error");
+                        log("Errorverify");
                       }
                     },
                     child: const Text("Verify Phone Number")),

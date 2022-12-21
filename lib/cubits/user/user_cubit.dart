@@ -1,9 +1,12 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
+import '../../data/local_data/storage.dart';
 import '../../data/models/chat_mode/user_item.dart';
 import '../../data/repository/helper_repository.dart';
 
@@ -13,7 +16,6 @@ class UserCubit extends Cubit<UserState> {
   UserCubit({required this.helperRepository})
       : super(const UserState(
           isAdded: false,
-          allUsers: [],
           errorText: '',
           status: FormzStatus.pure,
           users: [],
@@ -49,12 +51,33 @@ class UserCubit extends Cubit<UserState> {
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
       var uid = FirebaseAuth.instance.currentUser!.uid;
       var phoneNumber = FirebaseAuth.instance.currentUser!.phoneNumber!;
+      String? FCMToken = await FirebaseMessaging.instance.getToken();
       await addUser(
-          user: UserItem(
-              userId: uid,
-              phoneNumber: phoneNumber,
-              userAuth: '',
-              userName: phoneNumber));
+        user: UserItem(
+            userId: uid,
+            phoneNumber: phoneNumber,
+            userAuth: '',
+            userName: phoneNumber),
+      );
+      await helperRepository.getUserToken(
+          phoneNumber: phoneNumber, fcmToken: FCMToken!);
+      String accessToken = await helperRepository.getUserToken(
+          phoneNumber: phoneNumber, fcmToken: FCMToken);
+      await StorageRepository.putString(
+          key: "access_token", value: accessToken);
+      log("get number: $phoneNumber");
+      log("Added token $accessToken");
+    } on FirebaseAuthException catch (error) {
+      emit(state.copyWith(
+          status: FormzStatus.submissionFailure, errorText: error.message));
+    }
+  }
+
+  Future<void> getUserInfo({required String accessToken}) async {
+    emit(state.copyWith(status: FormzStatus.submissionInProgress));
+    try {
+      await helperRepository.getUserInfo(accessToken: accessToken);
+      print("Done");
     } on FirebaseAuthException catch (error) {
       emit(state.copyWith(
           status: FormzStatus.submissionFailure, errorText: error.message));
@@ -71,16 +94,6 @@ class UserCubit extends Cubit<UserState> {
       emit(state.copyWith(
           status: FormzStatus.submissionFailure, errorText: error.toString()));
     }
-  }
-
-  void updateCurrentItem({
-    required dynamic fieldValue,
-    required String fieldKey,
-  }) {
-    var map = state.fields;
-    map[fieldKey] = fieldValue;
-    debugPrint("MAP DATA:${map}");
-    emit(state.copyWith(fields: map));
   }
 
   Future<void> listenUsers() async {
