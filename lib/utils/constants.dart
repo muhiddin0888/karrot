@@ -1,10 +1,8 @@
-const String splashPage = '/';
-const String mainPage = '/main_page';
-const String navBar = '/tab_page';
-const String onBoarding = '/on_boarding';
-const String otp = '/otp';
-const String verify = '/verify';
-const String notification = '/notification';
-const String deliverInfo = '/deliverInfo';
-const String chat = '/chat';
-const String createPost = '/create_post';
+import 'package:flutter/material.dart';
+
+class Constants {
+  Constants._();
+  static const uzb = Locale('uz', 'UZ');
+  static const eng = Locale('en', 'EN');
+  static const ru = Locale('ru', 'RU');
+}

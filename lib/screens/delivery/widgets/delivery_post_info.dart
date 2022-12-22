@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:phone_otp_ui/utils/router_constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../utils/color.dart';
-import '../../../utils/constants.dart';
 import '../../../utils/style.dart';
 
 class DeliveryPostInfo extends StatelessWidget {
@@ -159,7 +159,7 @@ class DeliveryPostInfo extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, chat);
+                      Navigator.pushNamed(context, RouterConstants.chat);
                     },
                     child: Container(
                       height: 50.h,

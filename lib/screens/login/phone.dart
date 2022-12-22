@@ -1,13 +1,12 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
-import '../../../utils/constants.dart';
 import '../../../utils/icon.dart';
 import '../../cubits/user/user_cubit.dart';
 import '../../data/local_data/storage.dart';
 import '../../utils/color.dart';
+import '../../utils/router_constants.dart';
 
 class MyPhone extends StatefulWidget {
   const MyPhone({Key? key}) : super(key: key);
@@ -134,9 +133,11 @@ class _MyPhoneState extends State<MyPhone> {
                         debugPrint("Mobile Number is: $mobilNumber");
                         await context.read<UserCubit>().singInWithPhoneNumber(
                             number: mobilNumber, context: context);
-                        await Future.delayed(Duration(seconds: 2));
+                        await Future.delayed(const Duration(seconds: 2));
                         await Navigator.pushNamedAndRemoveUntil(
-                            context, verify, (Route<dynamic> route) => false);
+                            context,
+                            RouterConstants.verify,
+                            (Route<dynamic> route) => false);
                       }
                     },
                     child: const Text("Send the code")),
@@ -150,8 +151,8 @@ class _MyPhoneState extends State<MyPhone> {
 
   String validateMobile(String value) {
     String patttern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
-    RegExp regExp = new RegExp(patttern);
-    if (value.length == 0) {
+    RegExp regExp = RegExp(patttern);
+    if (value.isEmpty) {
       return 'Please enter mobile number';
     } else if (!regExp.hasMatch(value)) {
       return 'Please enter valid mobile number';

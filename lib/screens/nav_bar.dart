@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:phone_otp_ui/screens/car_rent/car_rent.dart';
 import 'package:phone_otp_ui/screens/chat/chat_home_page.dart';
@@ -51,10 +52,10 @@ class _TabBoxState extends State<TabBox> {
         selectedItemColor: Colors.black,
         unselectedItemColor: const Color.fromARGB(255, 182, 181, 181),
         items: [
-          getItem(icon: Icons.home_filled, labelText: "Home"),
-          getItem(icon: Icons.car_rental, labelText: "Car Rent"),
-          getItem(icon: Icons.chat, labelText: "Chat"),
-          getItem(icon: Icons.perm_identity_rounded, labelText: "Profile")
+          getItem(icon: Icons.home_filled, labelText: tr("home")),
+          getItem(icon: Icons.car_rental, labelText: tr("car")),
+          getItem(icon: Icons.chat, labelText: tr("chat")),
+          getItem(icon: Icons.perm_identity_rounded, labelText: tr("profile"))
         ],
       ),
     );

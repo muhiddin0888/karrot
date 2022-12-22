@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:phone_otp_ui/utils/color.dart';
-import 'package:phone_otp_ui/utils/constants.dart';
 import 'package:phone_otp_ui/utils/icon.dart';
+import 'package:phone_otp_ui/utils/router_constants.dart';
 import 'package:phone_otp_ui/utils/style.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -211,7 +211,8 @@ class _CarRentInfoScreenState extends State<CarRentInfoScreen> {
                         Expanded(
                           child: GestureDetector(
                             onTap: () {
-                              Navigator.pushNamed(context, chat);
+                              Navigator.pushNamed(
+                                  context, RouterConstants.chat);
                             },
                             child: Container(
                               height: 50.h,

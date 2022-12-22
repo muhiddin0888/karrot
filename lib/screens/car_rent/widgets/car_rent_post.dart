@@ -73,8 +73,8 @@ class CarRentPost extends StatelessWidget {
                     SizedBox(
                       width: 110.w,
                     ),
-                    Icon(Icons.chat_bubble_outline_outlined),
-                    Icon(Icons.favorite_border),
+                    const Icon(Icons.chat_bubble_outline_outlined),
+                    const Icon(Icons.favorite_border),
                   ],
                 )
               ],

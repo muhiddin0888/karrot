@@ -3,6 +3,7 @@ import 'package:phone_otp_ui/utils/color.dart';
 import '../data/local_data/storage.dart';
 import '../utils/constants.dart';
 import '../utils/icon.dart';
+import '../utils/router_constants.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -21,9 +22,9 @@ class _SplashScreenState extends State<SplashScreen> {
     print(isLogged);
     if (!mounted) return;
     if (isLogged) {
-      Navigator.pushReplacementNamed(context, navBar);
+      Navigator.pushReplacementNamed(context, RouterConstants.navBar);
     } else {
-      Navigator.pushReplacementNamed(context, onBoarding);
+      Navigator.pushReplacementNamed(context, RouterConstants.onBoarding);
     }
   }
 

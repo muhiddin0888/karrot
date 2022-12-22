@@ -4,9 +4,8 @@ import 'package:phone_otp_ui/screens/on_boarding/widgets/intro_page1.dart';
 import 'package:phone_otp_ui/screens/on_boarding/widgets/intro_page2.dart';
 import 'package:phone_otp_ui/screens/on_boarding/widgets/intro_page3.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import '../../utils/color.dart';
-import '../../utils/constants.dart';
+import '../../utils/router_constants.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -91,7 +90,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       ? GestureDetector(
                           onTap: () async {
                             Navigator.pushNamedAndRemoveUntil(
-                                context, otp, (Route<dynamic> route) => false);
+                                context,
+                                RouterConstants.otp,
+                                (Route<dynamic> route) => false);
                           },
                           child: Container(
                             width: 145.w,

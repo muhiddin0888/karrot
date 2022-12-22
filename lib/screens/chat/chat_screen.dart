@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:formz/formz.dart';
-import 'package:lottie/lottie.dart';
 import 'package:phone_otp_ui/utils/color.dart';
 import '../../cubits/chats/chats_cubit.dart';
 import '../../utils/style.dart';
@@ -196,7 +194,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   // onTap.call();
                   messagingController.clear();
                   //
-                  Future.delayed(Duration(milliseconds: 100), () {
+                  Future.delayed(const Duration(milliseconds: 100), () {
                     setState(() {
                       scrollController
                           .jumpTo(scrollController.position.maxScrollExtent);

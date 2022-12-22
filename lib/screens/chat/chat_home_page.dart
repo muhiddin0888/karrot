@@ -1,15 +1,11 @@
-import 'dart:developer';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:formz/formz.dart';
-import 'package:phone_otp_ui/data/repository/helper_repository.dart';
 import '../../cubits/chats/chats_cubit.dart';
 import '../../cubits/user/user_cubit.dart';
-import '../../data/api/api_provider.dart';
-import '../../data/local_data/storage.dart';
 import '../../data/models/chat_mode/user_item.dart';
 import '../../utils/color.dart';
 import '../../utils/style.dart';
@@ -38,7 +34,7 @@ class _ChatHomePageState extends State<ChatHomePage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Chat",
+          tr("chat"),
           style: AppTextStyle.sfProBlack.copyWith(
             color: AppColors.black,
             fontSize: 24.sp,

@@ -5,13 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
-import 'package:phone_otp_ui/screens/login/phone.dart';
 import 'package:phone_otp_ui/utils/icon.dart';
 import 'package:pinput/pinput.dart';
 import '../../cubits/user/user_cubit.dart';
 import '../../data/local_data/storage.dart';
 import '../../utils/color.dart';
-import '../../utils/constants.dart';
+import '../../utils/router_constants.dart';
 
 class MyVerify extends StatefulWidget {
   const MyVerify({Key? key}) : super(key: key);
@@ -125,7 +124,7 @@ class _MyVerifyState extends State<MyVerify> {
                       onPressed: () {
                         Navigator.pushNamedAndRemoveUntil(
                           context,
-                          otp,
+                          RouterConstants.otp,
                           (route) => false,
                         );
                       },

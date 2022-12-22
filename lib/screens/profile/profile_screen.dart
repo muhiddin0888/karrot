@@ -1,26 +1,33 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:phone_otp_ui/utils/constants.dart';
 import 'package:phone_otp_ui/utils/icon.dart';
-import '../../data/local_data/storage.dart';
 import '../../utils/color.dart';
+import '../../utils/router_constants.dart';
 import '../../utils/style.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Profile",
+          tr("profile"),
           style: AppTextStyle.sfProBlack.copyWith(
             color: AppColors.black,
             fontSize: 24.sp,
           ),
         ),
+        elevation: 0.5,
         backgroundColor: AppColors.white,
       ),
       body: ListView(
@@ -45,7 +52,7 @@ class ProfileScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "My Profile",
+                      tr("my_profile"),
                       style: AppTextStyle.sfProMedium.copyWith(fontSize: 16),
                     ),
                     SizedBox(
@@ -57,11 +64,14 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
-                  width: 20.w,
+                const Expanded(
+                  child: SizedBox(),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(
+                        context, RouterConstants.profileEditScreen);
+                  },
                   child: Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
@@ -69,18 +79,10 @@ class ProfileScreen extends StatelessWidget {
                         color: AppColors.black),
                     child: Row(children: [
                       Text(
-                        "Edit Profile",
+                        tr("edit_profile"),
                         style: AppTextStyle.sfProMedium
                             .copyWith(color: AppColors.white),
                       ),
-                      SizedBox(
-                        width: 2.w,
-                      ),
-                      const Icon(
-                        CupertinoIcons.slider_horizontal_3,
-                        color: AppColors.white,
-                        size: 24,
-                      )
                     ]),
                   ),
                 )
@@ -93,201 +95,119 @@ class ProfileScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Settings",
-                  style: AppTextStyle.sfProBold.copyWith(fontSize: 20.sp),
+                  tr("settings"),
+                  style: AppTextStyle.sfProBold.copyWith(fontSize: 22.sp),
                 ),
                 SizedBox(
                   height: 7.h,
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0.h),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 10.w,
-                      ),
-                      Row(
-                        children: [
-                          Icon(CupertinoIcons.flag_circle),
-                          SizedBox(
-                            width: 7.w,
-                          ),
-                          Text(
-                            "Language",
-                            style: AppTextStyle.sfProRegular
-                                .copyWith(fontSize: 16.sp),
-                          ),
-                        ],
-                      ),
-                    ],
+                InkWell(
+                  onTap: () {
+                    showModalBottomSheet(
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        builder: (BuildContext context) {
+                          return Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 200.h,
+                            decoration: const BoxDecoration(
+                              color: AppColors.white,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20),
+                              ),
+                            ),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 20.h,
+                                ),
+                                Text(tr("select_language")),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                ElevatedButton(
+                                    onPressed: () {
+                                      // BlocProvider.of<LocalizationCubit>(
+                                      //         context)
+                                      //     .changeLanguage(Constants.uzb);
+                                      setState(() {
+                                        context.setLocale(Constants.uzb);
+                                      });
+
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text(tr("uz"))),
+                                ElevatedButton(
+                                    onPressed: () {
+                                      // BlocProvider.of<LocalizationCubit>(
+                                      //         context)
+                                      //     .changeLanguage(Constants.eng);
+                                      setState(() {
+                                        context.setLocale(Constants.eng);
+                                      });
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text(tr("eng"))),
+                                ElevatedButton(
+                                    onPressed: () {
+                                      // BlocProvider.of<LocalizationCubit>(
+                                      //         context)
+                                      //     .changeLanguage(Constants.ru);
+                                      setState(() {
+                                        context.setLocale(Constants.ru);
+                                      });
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text(tr("rus"))),
+                              ],
+                            ),
+                          );
+                        });
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.all(10.0.w),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        Row(
+                          children: [
+                            const Icon(
+                              CupertinoIcons.flag_circle,
+                              size: 34,
+                            ),
+                            SizedBox(
+                              width: 7.w,
+                            ),
+                            Text(
+                              tr("language"),
+                              style: AppTextStyle.sfProRegular
+                                  .copyWith(fontSize: 20.sp),
+                            ),
+                            const Expanded(
+                              child: SizedBox(),
+                            ),
+                            const Icon(
+                              Icons.arrow_forward_ios,
+                              color: AppColors.black,
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Text(
-                  "About Us",
-                  style: AppTextStyle.sfProBold.copyWith(fontSize: 20.sp),
+                  tr("about_us"),
+                  style: AppTextStyle.sfProBold.copyWith(fontSize: 22.sp),
                 ),
                 SizedBox(
                   height: 7.h,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0.h),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Icon(Icons.question_mark_outlined),
-                          SizedBox(
-                            width: 7.w,
-                          ),
-                          Text(
-                            "FAQ",
-                            style: AppTextStyle.sfProRegular
-                                .copyWith(fontSize: 16.sp),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10.w,
-                      ),
-                      Row(
-                        children: [
-                          Icon(Icons.privacy_tip),
-                          SizedBox(
-                            width: 7.w,
-                          ),
-                          Text(
-                            "Privacy Policy",
-                            style: AppTextStyle.sfProRegular
-                                .copyWith(fontSize: 16.sp),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          const Icon(Icons.people),
-                          SizedBox(
-                            width: 7.w,
-                          ),
-                          Text(
-                            "Contact Us",
-                            style: AppTextStyle.sfProRegular
-                                .copyWith(fontSize: 16.sp),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 30.h,
-                      ),
-                      GestureDetector(
-                        onTap: () async {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                  title:
-                                      const Text("You really want to logout"),
-                                  content: SizedBox(
-                                    height: 110.h,
-                                    width: 110.w,
-                                    child: Container(
-                                        color: Colors.white,
-                                        child: Column(
-                                          children: [
-                                            InkWell(
-                                              onTap: () async {
-                                                await StorageRepository
-                                                    .deleteBool("isLogged");
-                                                await StorageRepository
-                                                    .deleteString(
-                                                        "phone_number");
-                                                await StorageRepository
-                                                    .deleteString(
-                                                        "access_token");
-                                                Navigator
-                                                    .pushNamedAndRemoveUntil(
-                                                        context,
-                                                        otp,
-                                                        (Route<dynamic>
-                                                                route) =>
-                                                            false);
-                                              },
-                                              child: Container(
-                                                width: 250.w,
-                                                height: 50.h,
-                                                decoration: BoxDecoration(
-                                                  color:
-                                                      AppColors.defaultKarrot,
-                                                  borderRadius:
-                                                      BorderRadius.circular(30),
-                                                ),
-                                                child: Center(
-                                                  child: Text(
-                                                    'Yes, I am sure',
-                                                    style: AppTextStyle
-                                                        .sfProMedium
-                                                        .copyWith(
-                                                            fontSize: 18.sp,
-                                                            color: AppColors
-                                                                .white),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 10.h,
-                                            ),
-                                            InkWell(
-                                              onTap: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: Container(
-                                                width: 250.w,
-                                                height: 50.h,
-                                                decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      width: 1,
-                                                      color: AppColors
-                                                          .defaultKarrot),
-                                                  borderRadius:
-                                                      BorderRadius.circular(30),
-                                                ),
-                                                child: Center(
-                                                  child: Text(
-                                                    'No, go back',
-                                                    style: AppTextStyle
-                                                        .sfProMedium
-                                                        .copyWith(
-                                                            fontSize: 18.sp,
-                                                            color: AppColors
-                                                                .black),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        )),
-                                  ));
-                            },
-                          );
-                        },
-                        child: Container(
-                          width: 250.w,
-                          height: 50.h,
-                          decoration: BoxDecoration(
-                            color: AppColors.defaultKarrot,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Log Out',
-                              style: AppTextStyle.sfProMedium.copyWith(
-                                  fontSize: 18.sp, color: AppColors.white),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
               ],
             ),

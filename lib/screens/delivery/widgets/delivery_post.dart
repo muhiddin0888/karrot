@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../utils/color.dart';
@@ -28,15 +29,15 @@ class DeliveryPost extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Toshkent - Seul",
+                  tr('location'),
                   style: AppTextStyle.sfProMedium.copyWith(fontSize: 18.sp),
                 ),
                 Text(
-                  "Oybek Street",
+                  "Oybek ${tr("street")}",
                   style: AppTextStyle.sfProRegular.copyWith(fontSize: 16.sp),
                 ),
                 Text(
-                  "Building 16D",
+                  "${tr("building")} 16D",
                   style: AppTextStyle.sfProRegular.copyWith(fontSize: 16.sp),
                 ),
               ],
@@ -51,7 +52,7 @@ class DeliveryPost extends StatelessWidget {
                   style: AppTextStyle.sfProBold.copyWith(fontSize: 32.sp),
                 ),
                 Text(
-                  "km away",
+                  tr('km_away'),
                   style: AppTextStyle.sfProBold.copyWith(fontSize: 20.sp),
                 ),
               ],

@@ -4,7 +4,7 @@ import 'package:flutter_picker/Picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:phone_otp_ui/screens/delivery/widgets/city_selector.dart';
 import 'package:phone_otp_ui/screens/global/done.dart';
-import 'package:phone_otp_ui/utils/constants.dart';
+import 'package:phone_otp_ui/utils/router_constants.dart';
 import '../../../utils/color.dart';
 import '../../../utils/style.dart';
 
@@ -162,8 +162,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: ((context) => DoneScreen(
-                            navigation: navBar,
+                      builder: ((context) => const DoneScreen(
+                            navigation: RouterConstants.navBar,
                           ))));
             },
             child: Container(

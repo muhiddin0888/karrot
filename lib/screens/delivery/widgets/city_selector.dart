@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,8 +17,8 @@ class CitySelector extends StatefulWidget {
 }
 
 class _CitySelectorState extends State<CitySelector> {
-  String countryFrom = "From";
-  String countryWhere = "Where";
+  String countryFrom = tr("from");
+  String countryWhere = tr("where");
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -117,7 +118,7 @@ class _CitySelectorState extends State<CitySelector> {
                 context: context,
                 builder: (BuildContext context) {
                   return AlertDialog(
-                    title: const Text("Select destination"),
+                    title: Text(tr("select_destination")),
                     content: SizedBox(
                       height: 200.h,
                       width: 200.h,

@@ -1,15 +1,12 @@
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:phone_otp_ui/screens/login/phone.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../../utils/constants.dart';
+import '../../utils/router_constants.dart';
 import '../api/api_provider.dart';
 import '../local_data/storage.dart';
 import '../models/chat_mode/chats_model.dart';
-import '../models/chat_mode/comment_model.dart';
 import '../models/chat_mode/user_item.dart';
 
 class HelperRepository {
@@ -26,18 +23,28 @@ class HelperRepository {
   }) async {
     try {
       _fireStore
-          .collection('users')
-          .doc(userJson["phone_number"])
+          .collection("users")
+          .where("phone_number", isEqualTo: userJson["phone_number"])
           .get()
-          .then((DocumentSnapshot documentSnapshot) {
-        if (documentSnapshot.exists) {
+          .then((value) {
+        if (value.size > 0) {
           log('Document exists on the database');
-          ("Userr added, $userJson");
-          _fireStore.collection("users").add(userJson);
         } else {
-          log('Document exists on the database');
+          _fireStore.collection("users").add(userJson);
+          log("User added, $userJson");
         }
       });
+      // _fireStore
+      //     .collection('users')
+      //     .doc(userJson["phone_number"])
+      //     .get()
+      //     .then((DocumentSnapshot documentSnapshot) {
+      //   if (documentSnapshot.exists) {
+      //
+      //   } else {
+
+      //   }
+      // });
     } catch (e) {
       throw Exception();
     }
@@ -73,7 +80,7 @@ class HelperRepository {
       codeSent: (String verificationId, int? resendToken) {
         debugPrint('VERIFICATION ID: $verificationId');
         MyPhone.verify = verificationId;
-        Navigator.pushNamed(context, otp);
+        Navigator.pushNamed(context, RouterConstants.otp);
       },
       codeAutoRetrievalTimeout: (String verificationId) {},
     );
@@ -88,7 +95,8 @@ class HelperRepository {
       );
       await FirebaseAuth.instance.signInWithCredential(credential);
       await StorageRepository.putBool("isValid", true);
-      Navigator.pushNamedAndRemoveUntil(context, navBar, (route) => false);
+      Navigator.pushNamedAndRemoveUntil(
+          context, RouterConstants.navBar, (route) => false);
     } on FirebaseAuthException catch (e) {
       debugPrint("wrong otp: ${e.message}");
     }
@@ -135,12 +143,15 @@ class HelperRepository {
     }
   }
 
-  Stream<List<ChatsModel>> getChats() =>
-      _fireStore.collection('chats').snapshots().map(
-            (snapshot) => snapshot.docs
-                .map((doc) => ChatsModel.fromJson(doc.data()))
-                .toList(),
-          );
+  Stream<List<ChatsModel>> getChats() => _fireStore
+      .collection('chats')
+      .where("receiver_id", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+      .snapshots()
+      .map(
+        (snapshot) => snapshot.docs
+            .map((doc) => ChatsModel.fromJson(doc.data()))
+            .toList(),
+      );
 //--------------------------------------CHAT------------------------------------------------
 //--------------------------------------Api------------------------------------------------
   Future<String> getUserToken(

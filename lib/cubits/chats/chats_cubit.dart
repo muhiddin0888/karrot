@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,7 @@ part 'chats_state.dart';
 
 class ChatsCubit extends Cubit<ChatsState> {
   ChatsCubit({required this.helperRepository})
-      : super(ChatsState(
+      : super(const ChatsState(
           errorText: '',
           status: FormzStatus.pure,
           fields: {
@@ -61,6 +60,11 @@ class ChatsCubit extends Cubit<ChatsState> {
         ),
       );
     });
+  }
+
+  Future<void> getUsers() async {
+    emit(state.copyWith(status: FormzStatus.submissionSuccess));
+    helperRepository.getChats();
   }
 
   Future<void> addChat() async {

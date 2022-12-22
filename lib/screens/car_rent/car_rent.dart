@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:phone_otp_ui/screens/car_rent/widgets/car_rent_info.dart';
@@ -16,7 +17,7 @@ class CarRentScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Car Rent",
+          tr("car_rent"),
           style: AppTextStyle.sfProBlack.copyWith(
             color: AppColors.black,
             fontSize: 24.sp,

@@ -1,0 +1,25 @@
+{
+  "eng": "English",
+  "rus": "Russian",
+  "uz": "Uzbek",
+  "language": "Language",
+  "home":"Home",
+  "car":"Car",
+  "delivery":"Delivery",
+  "car_rent":"Car Sell",
+  "chat":"Chat",
+  "profile":"Profile",
+  "from":"From",
+  "where":"Where",
+  "select_destination":"Select destination",
+  "location":"Toshkent - Seul",
+  "km_away":"km away",
+  "street":"Street",
+  "building":"Building",
+  "my_profile":"My Profile",
+  "edit_profile":"Edit Profile",
+  "settings":"Settings",
+  "about_us":"About Us",
+  "select_language":"Select language"
+
+}

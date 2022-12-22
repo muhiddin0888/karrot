@@ -32,7 +32,7 @@ class IntorPage2 extends StatelessWidget {
             height: 16.h,
           ),
           Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Text(
               "Now it is easy to find car, you ca also post to sell your car gan give a rent",
               style: TextStyle(
